@@ -30,14 +30,14 @@ app.get('/', function (req, res) {
   // path.join(__dirname + 'dist/index.html');
 });
 // designates what port the app will listen to for incoming requests
-app.listen(5000, function () {
-  console.log('Example app listening on port 5000!');
+app.listen(8081, function () {
+  console.log('Example app listening on port 8081!');
 });
 app.get('/test', function (req, res) {
   res.send(mockAPIResponse);
 });
 //Post request
-app.post('/sentiment', function (req, res) {
+app.post('/data', function (req, res) {
   textapi.sentiment(
     {
       url: req.body.url,

@@ -3,10 +3,8 @@ function handleSubmit(event) {
   //Get input from form input field
   var input_url = document.querySelectorAll('input[name=test-url]');
   //Verify that input is a valid url
-  if (Client.validURL(JSON.parse(JSON.stringify(input_url[0].value)))) {
-    console.log('::: FORM INPUT VALID :::');
-    console.log('BUILDING REQUEST');
-    fetch('http://localhost:3000/article', {
+  if (Client.checkURL(JSON.parse(JSON.stringify(input_url[0].value)))) {
+    fetch('http://localhost:8081/data', {
       method: 'POST',
       mode: 'cors',
       headers: {
