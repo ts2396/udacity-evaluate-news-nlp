@@ -3,7 +3,6 @@ dotenv.config();
 
 /* Empty JS object to act as endpoint for all routes */
 const projectData = [];
-
 var path = require('path');
 const express = require('express');
 const mockAPIResponse = require('./mockAPI.js');
@@ -36,8 +35,9 @@ console.log(__dirname);
 // Initialize all route with a callback function
 
 app.get('/', function (req, res) {
+  res.sendFile(path.resolve('dist/index.html'));
   // res.sendFile(path.resolve('src/client/views/index.html'))
-  res.sendFile('dist/index.html');
+  //res.sendFile('dist/index.html');
   // path.join(__dirname + 'dist/index.html');
 });
 
@@ -45,18 +45,19 @@ app.get('/', function (req, res) {
 // designates what port the app will listen to for incoming requests
 app.listen(8081, function () {
   /* Spin up the server*/
-  console.log('Example app listening on port 8081!');
+  // console.log(server);
+  console.log(`running on localhost: ${port}`);
   console.log('API KEY: ' + process.env.API_KEY);
   console.log('API ID: ' + process.env.API_ID);
 });
 
-
+// Initialize all route with a callback function
 app.get('/test', function (req, res) {
   res.send(mockAPIResponse);
 });
 
 // POST route
-app.post('/add', function (req, res) {
+app.post('/eval', function (req, res) {
   textapi.sentiment(
     {
       url: req.body.url,
