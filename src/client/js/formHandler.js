@@ -1,31 +1,66 @@
+import { checkURL } from './URLChecker';
 function handleSubmit(event) {
   event.preventDefault();
-  const baseUrl = 'http://localhost:8081/data';
-  const url = document.getElementById('URL').value;
-  // Using validateUrl to check if URL is correct
-  if (Client.checkUrl(url)) {
-    // fetching data
-    fetch(baseUrl, {
-      method: 'POST',
-      mode: 'cors',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify({ url: url }),
-    })
-      .then((res) => res.json())
-      .then(function (res) {
-        // Manipulating DOM to add data
-        document.getElementById('polarity').innerHTML = res.polarity;
-        document.getElementById('subjectivity').innerHTML = res.subjectivity;
-        document.getElementById('text').innerHTML = res.text;
-        document.getElementById('polarity_confidence').innerHTML =
-          res.polarity_confidence;
-        document.getElementById('subjectivity_confidence').innerHTML =
-          res.subjectivity_confidence;
-      });
-  } else {
-    console.log('Url not valid');
+  let userUrl = document.getElementById('url').value;
+  const verifyUrl = Client.checkURL(userUrl);
+  if (verifyUrl) {
+    postData('http://localhost:8081/add', {
+      url: userUrl,
+    }).then(function (data) {
+      updateUI(data);
+    });
+    return false;
   }
 }
+
+////////////////////////////////////////////////
+// /* Function to GET Project Data */         //
+// const retrieveData = async (url = '') => { //
+//   const request = await fetch(url);        //
+//   try {                                    //
+//     Transform into JSON                    //
+//     const allData = await request.json();  //
+//     return allData;                        //
+//   } catch (error) {                        //
+//     console.log('error', error);           //
+//     appropriately handle the error         //
+//   }                                        //
+// };                                         //
+////////////////////////////////////////////////
+
+//////////////////////////
+// Function to POST Data//
+//////////////////////////
+const postData = async (url = '', data = {}) => {
+  const response = await fetch(url, {
+    method: 'POST',
+    credentials: 'same-origin',
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8',
+    },
+    body: JSON.stringify(data), // body data type must match "Content-Type" header
+  });
+
+  try {
+    // transform into JSON
+    const webData = await response.json();
+    return webData;
+  } catch (error) {
+    console.log('error', error);
+    // appropriately handle the error
+  }
+};
+
+//////////////
+// Update UI//
+//////////////
+const updateUI = async (input) => {
+  document.getElementById('polarity').innerHTML = input.polarity;
+  document.getElementById('polarity_confidence').innerHTML =
+    input.polarity_confidence;
+  document.getElementById('subjectivity').innerHTML = input.subjectivity;
+  document.getElementById('subjectivity_confidence').innerHTML =
+    input.subjectivity_confidence;
+  document.getElementById('text').innerHTML = input.text;
+};
 export { handleSubmit };
