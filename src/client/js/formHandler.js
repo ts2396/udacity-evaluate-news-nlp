@@ -1,30 +1,28 @@
 function handleSubmit(event) {
-  event.preventDefault()
-
-  // check what text was put into the form field
-  let formText = document.getElementById('url').value
-  if (Client.checkUrl(formText)) {
-      const postUrl = async (url = '', data = {}) => {
-          const response = await fetch(url, {
-              method: 'POST',
-              credentials: 'same-origin',
-              headers: {
-                  'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(data),
-          });
-
-          try {
-              const newData = await response.json();
-              document.getElementById('results').innerHTML = `<div>Hi ${name}, this is your results\:</div><div>label: ${newData.label}</div><div>code: ${newData.code}</div><div>confidence: ${newData.confidence}</div>`
-              return newData
-          } catch (error) {
-              console.log("error", error);
-          }
-      };
-
-      postUrl('/all', { url: formText })
+  event.preventDefault();
+  const formText = document.getElementById('url').value;
+  const errormessage = Client.checkURL(formText);
+  document.getElementById('err').innerHTML = '';
+  if (errormessage) {
+    document.getElementById('err').innerHTML = errormessage;
+    return;
   }
+  fetch('http://localhost:8081/data', {
+    method: 'POST',
+    credentials: 'same-origin',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ formText }),
+  })
+    .then((res) => res.json())
+    .then(function (res) {
+      document.getElementById('results').innerHTML = res.text;
+      document.getElementById('polarity').innerHTML = res.polarity;
+      document.getElementById('polarity_confidence').innerHTML =
+        res.polarity_confidence.toFixed(2) * 100;
+      document.getElementById('subjectivity_confidence').innerHTML =
+        res.subjectivity_confidence.toFixed(2) * 100;
+    });
 }
-
-export { handleSubmit }
+export { handleSubmit };
