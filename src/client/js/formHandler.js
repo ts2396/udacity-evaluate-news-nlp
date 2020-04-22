@@ -1,38 +1,30 @@
 function handleSubmit(event) {
-  event.preventDefault();
-  //Get input from form input field
-  var input_url = document.querySelectorAll('input[name=test-url]');
-  //Verify that input is a valid url
-  if (Client.checkURL(JSON.parse(JSON.stringify(input_url[0].value)))) {
-    fetch('http://localhost:8081/data', {
-      method: 'POST',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ text: input_url[0].value }),
-    })
-      .then((res) => res.json())
-      .then(function (res) {
-        // print for debugging
-        console.log(res);
-        // Populates html with url information
-        document.querySelector('section.url-results #polarity').innerHTML =
-          res.polarity;
-        document.querySelector('section.url-results #subjectivity').innerHTML =
-          res.subjectivity;
-        document.querySelector(
-          'section.url-results #polarity_confidence'
-        ).innerHTML = res.polarity_confidence;
-        document.querySelector(
-          'section.url-results #subjectivity_confidence'
-        ).innerHTML = res.subjectivity_confidence;
-        document.querySelector('section.url-results #excerpt').innerHTML =
-          res.text;
-      });
-  } else {
-    alert('Invalid URL. Please enter a valid URL');
-    document.getElementById('name').value = '';
+  event.preventDefault()
+
+  // check what text was put into the form field
+  let formText = document.getElementById('url').value
+  if (Client.checkUrl(formText)) {
+      const postUrl = async (url = '', data = {}) => {
+          const response = await fetch(url, {
+              method: 'POST',
+              credentials: 'same-origin',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(data),
+          });
+
+          try {
+              const newData = await response.json();
+              document.getElementById('results').innerHTML = `<div>Hi ${name}, this is your results\:</div><div>label: ${newData.label}</div><div>code: ${newData.code}</div><div>confidence: ${newData.confidence}</div>`
+              return newData
+          } catch (error) {
+              console.log("error", error);
+          }
+      };
+
+      postUrl('/all', { url: formText })
   }
 }
-export { handleSubmit };
+
+export { handleSubmit }
