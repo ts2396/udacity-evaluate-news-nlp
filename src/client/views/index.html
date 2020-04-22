@@ -5,41 +5,36 @@
         <title>Evaluate a News Article with Natural Language Processing</title>
     </head>
     <body>
-    
         <header>
             <div class="">
                 Logo
             </div>
             <div class="">
-                navigation
+                Navigation
             </div>
         </header>
-    
         <main>
             <section>
-                <form class="" onsubmit="return handleSubmit(event)">
-                    <input id="url" type="text" name="input" value="" placeholder="Please insert a valid article url">
-                    <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)"
-                        onsubmit="return Client.handleSubmit(event)">
+                <form class="" onsubmit="return Client.handleSubmit(event)">
+                    <input id="name" type="text" name="input" value=""  placeholder="Name">
+                    <input class='btn' type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
                 </form>
-                <section>
-    
-                    <section>
-                        <strong>Form Results:</strong>
-                        <div id="results"></div>
-                    </section>
+            <section>
+            <section>
+                <div id='results'>
+                </div>
+            </section>
         </main>
-    
         <footer>
-            <p>This is a footer</p>
+            <p>Footer</p>
         </footer>
         <script>
-            if ('serviceWorker' in navigator) {
+            if('serviceWorker' in navigator){
                 window.addEventListener('load', () => {
-                    navigator.serviceWorker.register('/service-worker.js');
-                });
+                    navigator.serviceWorker.register('/service-worker.js')
+                })
             }
         </script>
     </body>
-    
-    </html>
+
+</html>

@@ -1,28 +1,31 @@
 function handleSubmit(event) {
   event.preventDefault();
-  const formText = document.getElementById('url').value;
-  const errormessage = Client.checkURL(formText);
-  document.getElementById('err').innerHTML = '';
-  if (errormessage) {
-    document.getElementById('err').innerHTML = errormessage;
-    return;
+  const baseUrl = 'http://localhost:8081/data';
+  const url = document.getElementById('URL').value;
+  // Using validateUrl to check if URL is correct
+  if (Client.checkUrl(url)) {
+    // fetching data
+    fetch(baseUrl, {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({ url: url }),
+    })
+      .then((res) => res.json())
+      .then(function (res) {
+        // Manipulating DOM to add data
+        document.getElementById('polarity').innerHTML = res.polarity;
+        document.getElementById('subjectivity').innerHTML = res.subjectivity;
+        document.getElementById('text').innerHTML = res.text;
+        document.getElementById('polarity_confidence').innerHTML =
+          res.polarity_confidence;
+        document.getElementById('subjectivity_confidence').innerHTML =
+          res.subjectivity_confidence;
+      });
+  } else {
+    console.log('Url not valid');
   }
-  fetch('http://localhost:8081/data', {
-    method: 'POST',
-    credentials: 'same-origin',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ formText }),
-  })
-    .then((res) => res.json())
-    .then(function (res) {
-      document.getElementById('results').innerHTML = res.text;
-      document.getElementById('polarity').innerHTML = res.polarity;
-      document.getElementById('polarity_confidence').innerHTML =
-        res.polarity_confidence.toFixed(2) * 100;
-      document.getElementById('subjectivity_confidence').innerHTML =
-        res.subjectivity_confidence.toFixed(2) * 100;
-    });
 }
 export { handleSubmit };
