@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Evaluate a News Article with Natural Language Processing</title>
+  </head>
+  <body>
+    <header>
+      <div class="">
+        Evaluate a News Article with Natural Language Processing
+      </div>
+      <div class="">
+        Evaluate A News Article with NLP
+      </div>
+    </header>
+    <main>
+      <section id="description-sec">
+        <p>
+          This is a language processing tool that relies on
+          <a href="https://docs.aylien.com/textapi/"
+            >Aylien's Content Analysis API</a
+          >. Please enter a valid URL to an article, blog, or text-based web
+          page below. The content submitted will be evaluated on the following
+          factors:
+        </p>
+      </section>
+      <section>
+        <form class="" onsubmit="return Client.handleSubmit(event)">
+          <input
+            id="name"
+            type="url"
+            name="test-url"
+            value=""
+            placeholder="Enter Url" />
+          <input
+            type="submit"
+            name=""
+            value="submit"
+            onclick="return Client.handleSubmit(event)"
+            onsubmit="return Client.handleSubmit(event)" />
+        </form>
+      </section>
+      <section id="API-results-sec">
+        <div id="result-container">
+          <h2><u>Results</u></h2>
+          <ul id="results-list">
+            <li id="polarity"></li>
+            <li id="polarity-confidence"></li>
+            <li id="subjectivity"></li>
+            <li id="subjectivity-confidence"></li>
+          </ul>
+        </div>
+        <div id="text-container">
+          <h2><u>Full Raw Text</u></h2>
+          <div id="full-text">
+            Text from submitted URL will populate here.
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <p>NLP - Aylient Natural Language Processing 2020</p>
+    </footer>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker
+            .register('/service-worker.js')
+            .then((registration) => {
+              console.log('SW registered successfuly: ', registration);
+            });
+        });
+      } else {
+        console.log('Service Working not supported');
+      }
+    </script>
+  </body>
+</html>
