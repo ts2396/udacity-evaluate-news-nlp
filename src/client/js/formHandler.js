@@ -1,8 +1,8 @@
 import { checkURL } from './URLChecker';
 function handleSubmit(event) {
   event.preventDefault();
-  let userUrl = document.getElementById('url').value;
-  const verifyUrl = Client.checkURL(userUrl);
+  let evalUrl = document.getElementById('url').value;
+  const verifyUrl = Client.checkURL(evalUrl);
   if (verifyUrl) {
     postData('http://localhost:8081/add', {
       url: userUrl,
