@@ -27,10 +27,10 @@ function handleSubmit(event) {
         ).innerHTML = res.subjectivity_confidence;
         document.querySelector('section.url-results #excerpt').innerHTML =
           res.text;
-        });
-      } else {
-        console.log('Url not valid');
-      }
-    }
-    
-    export { handleSubmit };
+      });
+  } else {
+    console.log('Url not valid');
+}
+export { 
+    handleSubmit
+}

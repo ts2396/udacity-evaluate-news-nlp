@@ -43,13 +43,23 @@ app.get('/', function (req, res) {
 
 /* Spin up the server*/
 // designates what port the app will listen to for incoming requests
-app.listen(8081, function () {
+//app.listen(8081, function () {
   /* Spin up the server*/
   // console.log(server);
+//  console.log(`running on localhost: ${port}`);
+//  console.log('API KEY: ' + process.env.API_KEY);
+//  console.log('API ID: ' + process.env.API_ID);
+//});
+const port = 8080;
+/* Spin up the server*/
+const server = app.listen(port, listening);
+function listening() {
+  // console.log(server);
   console.log(`running on localhost: ${port}`);
-  console.log('API KEY: ' + process.env.API_KEY);
   console.log('API ID: ' + process.env.API_ID);
-});
+}
+
+
 
 // Initialize all route with a callback function
 app.get('/test', function (req, res) {
