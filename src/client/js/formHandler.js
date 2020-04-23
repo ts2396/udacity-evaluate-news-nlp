@@ -4,7 +4,7 @@ function handleSubmit(event) {
   event.preventDefault();
   const url = document.getElementById('url').value;
   if (Client.checkURL(url)) {
-    console.log('BUILDING REQUEST');
+    console.log('Valid URL, Building Request');
     fetch('http://localhost:9000/add', {
       method: 'POST',
       mode: 'cors',
