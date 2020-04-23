@@ -4,7 +4,6 @@ function handleSubmit(event) {
   event.preventDefault();
   const url = document.getElementById('url').value;
   if (Client.checkURL(url)) {
-    console.log('::: FORM INPUT VALID :::');
     console.log('BUILDING REQUEST');
     fetch('http://localhost:9000/add', {
       method: 'POST',
