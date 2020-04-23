@@ -2,18 +2,19 @@ console.log('I exist still, I am the  Article');
 
 function handleSubmit(event) {
   event.preventDefault();
-  const baseUrl = 'http://localhost:8080/eval';
-  const url = document.getElementById('url').value;
-  // Using validateUrl to check if URL is correct
-  if (Client.checkURL(url)) {
-    // fetching data
-    fetch(baseUrl, {
+  //Get input from form input field
+  var input_url = document.getElementById('url').value;
+  //Verify that input is a valid url
+  if (Client.checkURL(input_url)) {
+    console.log('::: VALID INPUT:::');
+    console.log("::: Form Submitted :::");
+    fetch('./shake', {
       method: 'POST',
       mode: 'cors',
       headers: {
-        'Content-type': 'application/json',
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ url: url }),
+      body: JSON.stringify({ text: input_url.value }),
     })
       .then((res) => res.json())
       .then(function (res) {
