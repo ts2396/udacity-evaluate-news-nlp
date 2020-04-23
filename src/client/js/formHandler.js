@@ -1,34 +1,32 @@
-console.log('I exist still, I am the  Article');
+import { checkForUrl } from './URLChecker';
 
 function handleSubmit(event) {
   event.preventDefault();
-  //Get input from form input field
-  var input_url = document.getElementById('url').value;
-  //Verify that input is a valid url
-  if (Client.checkURL(input_url)) {
-    console.log('::: VALID INPUT:::');
-    console.log("::: Form Submitted :::");
-    fetch('./shake', {
+  const url = document.getElementById('url').value;
+  if (Client.checkURL(url)) {
+    console.log('::: FORM INPUT VALID :::');
+    console.log('BUILDING REQUEST');
+    fetch('http://localhost:9000/add', {
       method: 'POST',
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
+        Accept: 'application/json',
       },
-      body: JSON.stringify({ text: input_url.value }),
+      body: JSON.stringify({ url: url }),
     })
       .then((res) => res.json())
       .then(function (res) {
-        // Manipulating DOM to add data
         document.getElementById('polarity').innerHTML = res.polarity;
         document.getElementById('subjectivity').innerHTML = res.subjectivity;
-        document.getElementById('text').innerHTML = res.text;
         document.getElementById('polarity_confidence').innerHTML =
           res.polarity_confidence;
         document.getElementById('subjectivity_confidence').innerHTML =
           res.subjectivity_confidence;
       });
   } else {
-    console.log('Url not valid');
+    alert('URL not found.');
   }
 }
+
 export { handleSubmit };

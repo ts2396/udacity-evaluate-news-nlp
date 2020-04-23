@@ -24,14 +24,12 @@ console.log(__dirname);
 
 //Middleware
 const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Cors for cross origin allowance
 const cors = require('cors');
 app.use(cors());
-
-
 
 // Initialize all route with a callback function
 
@@ -55,19 +53,19 @@ app.get('/test', function (req, res) {
 });
 
 // POST route
-app.post('/shake', function (req, res) {
-  apiAylien.sentiment({
-      text: req.body.userInput,
-      mode: req.body.modeOfUserInput
-    }, function(error, response) {
-      if (error === null) {
-        apiMessage = response;  
-        console.log(`Response from Aylien API call for sentiment is...`);
-        console.log(apiMessage);
-        res.send(apiMessage);
-      }
-    });
-    
+app.post('/add', function (req, res) {
+  const urlHolder = req.body.url;
+  textapi.sentiment({ url: urlHolder }, function (error, response) {
+    if (error === null) {
+      projectData.polarity = response.polarity;
+      projectData.subjectivity = response.subjectivity;
+      projectData.polarity_confidence = response.polarity_confidence;
+      projectData.subjectivity_confidence = response.subjectivity_confidence;
+      res.send(projectData);
+    } else {
+      console.log(error);
+    }
+  });
 });
 
 module.exports = app;

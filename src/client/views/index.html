@@ -7,7 +7,7 @@
     <body>
         <header>
             <div class="">
-                Logo
+                Evaluate a News Article with Natural Language Processing
             </div>
             <div class="">
                 Navigation
@@ -16,12 +16,20 @@
         <main>
             <section>
                 <form class="" onsubmit="return Client.handleSubmit(event)">
-                    <input id="url" type="text" name="input" value=""  placeholder="Name">
-                    <input class='btn' type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
+                    <h4>Please Input a URL address</h4>
+                    <input id="url" type="url" name="url" value="" placeholder="Enter a valid news URL">
+                    <input type="submit" class="button" name="submit" value="Submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
                 </form>
             <section>
             <section>
-                <div id='results'>
+                <p class="sentiment-result">Form Results:</p>
+                <div id="results">
+                    <ul>
+                    <li id="polarity"></li>
+                    <li id="subjectivity"></li>
+                    <li id="polarity_confidence"></li>
+                    <li id="subjectivity_confidence"></li>
+                    </ul>
                 </div>
             </section>
         </main>
