@@ -46,7 +46,6 @@ NPM Script - test
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 - [WebPack](https://.js.org/) - Static module bundler
-- [MongoDB](https://www.mongodb.com/) - Database
 - [Express](https://expressjs.com/) - Server Framework
 - [NodeJs](https://nodejs.org/en/) - Server Environment
 
