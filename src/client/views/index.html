@@ -2,6 +2,8 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Evaluate a News Article with Natural Language Processing</title>
     </head>
     <body>
@@ -16,7 +18,6 @@
         <main>
             <section>
                 <form class="" onsubmit="return Client.handleSubmit(event)">
-                    <h4>Please Input a URL address</h4>
                     <input id="url" type="url" name="url" value="" placeholder="Enter a valid news URL">
                     <input type="submit" class="button" name="submit" value="Submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
                 </form>
@@ -25,10 +26,14 @@
                 <p class="sentiment-result">Form Results:</p>
                 <div id="results">
                     <ul>
-                    <li id="polarity"></li>
-                    <li id="subjectivity"></li>
-                    <li id="polarity_confidence"></li>
-                    <li id="subjectivity_confidence"></li>
+                        <li>
+                            <h3 id="polarity"></h3>
+                            <h3 id="polarity_confidence"></h3>
+                        </li>
+                        <li>
+                            <h3 id="subjectivity"></h3>
+                            <h3 id="subjectivity_confidence"></h3>
+                        </li>
                     </ul>
                 </div>
             </section>
