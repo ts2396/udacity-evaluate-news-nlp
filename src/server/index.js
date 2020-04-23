@@ -5,7 +5,6 @@ dotenv.config();
 const projectData = [];
 const path = require('path');
 const express = require('express');
-
 const mockAPIResponse = require('./mockAPI.js');
 
 /* Dependencies */
