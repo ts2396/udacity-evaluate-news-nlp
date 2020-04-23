@@ -38,7 +38,7 @@ Use of the Aylien API an API credential key is required. Register for free @ htt
 To start the server write the command:
 npm start
 The server will available on:
-http://localhost:8081/
+http://localhost:9000/
 
 ## 🔧 Running the tests <a name = "tests"></a>
 
