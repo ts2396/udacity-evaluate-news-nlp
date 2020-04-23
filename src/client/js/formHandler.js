@@ -1,4 +1,4 @@
-import { checkForUrl } from './URLChecker';
+import { checkURL } from './URLChecker';
 
 function handleSubmit(event) {
   event.preventDefault();
