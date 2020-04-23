@@ -48,5 +48,3 @@ NPM Script - test
 - [WebPack](https://.js.org/) - Static module bundler
 - [Express](https://expressjs.com/) - Server Framework
 - [NodeJs](https://nodejs.org/en/) - Server Environment
-
-
