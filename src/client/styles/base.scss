@@ -2,6 +2,9 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    margin: 0;
+    font-family: 'Oswald', sans-serif, Arial, Helvetica;
+    background-color: whitesmoke;
 }
 
 main {
@@ -11,4 +14,17 @@ main {
 section {
     max-width: 800px;
     margin: 50px auto;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+h3 {
+    font-size: 25px;
+    font-weight: bold;
 }

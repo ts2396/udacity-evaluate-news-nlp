@@ -52,20 +52,23 @@ app.get('/test', function (req, res) {
   res.send(mockAPIResponse);
 });
 
-// POST route
+//Post request
+
 app.post('/add', function (req, res) {
-  const urlHolder = req.body.url;
-  textapi.sentiment({ url: urlHolder }, function (error, response) {
-    if (error === null) {
-      projectData.polarity = response.polarity;
-      projectData.subjectivity = response.subjectivity;
-      projectData.polarity_confidence = response.polarity_confidence;
-      projectData.subjectivity_confidence = response.subjectivity_confidence;
-      res.send(projectData);
-    } else {
-      console.log(error);
+  textapi.sentiment(
+    {
+      url: req.body.url,
+    },
+    function (error, response) {
+      if (error === null) {
+        console.log(response);
+
+        res.send(response);
+
+        // return;
+      }
     }
-  });
+  );
 });
 
 module.exports = app;

@@ -1,53 +1,69 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Evaluate a News Article with Natural Language Processing</title>
-    </head>
-    <body>
-        <header>
-            <div class="">
-                Evaluate a News Article with Natural Language Processing
-            </div>
-            <div class="">
-                Navigation
-            </div>
-        </header>
-        <main>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Evaluate a News Article with Natural Language Processing</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/v4-shims.css">
+    <link rel="stylesheet" href="css/import.css" />
+    <script src="https://use.fontawesome.com/b76b25ebee.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="bgColor">
+            Evaluate a News Article with Natural Language Processing
+        </div>
+        <div class="bgColor">
+            Navigation
+        </div>
+    </header>
+    <main>
+        <section>
+            <form class="" onsubmit="return Client.handleSubmit(event)">
+                <input id="url" type="url" name="url" value="" placeholder="Enter a valid news URL">
+                <input type="submit" class="button" name="submit" value="Submit"
+                    onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
+            </form>
             <section>
-                <form class="" onsubmit="return Client.handleSubmit(event)">
-                    <input id="url" type="url" name="url" value="" placeholder="Enter a valid news URL">
-                    <input type="submit" class="button" name="submit" value="Submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
-                </form>
-            <section>
-            <section>
-                <p class="sentiment-result">Form Results:</p>
-                <div id="results">
-                    <ul>
-                        <li>
-                            <h3 id="polarity"></h3>
-                            <h3 id="polarity_confidence"></h3>
-                        </li>
-                        <li>
-                            <h3 id="subjectivity"></h3>
-                            <h3 id="subjectivity_confidence"></h3>
-                        </li>
-                    </ul>
-                </div>
-            </section>
-        </main>
-        <footer>
-            <p>Footer</p>
-        </footer>
-        <script>
-            if('serviceWorker' in navigator){
-                window.addEventListener('load', () => {
-                    navigator.serviceWorker.register('/service-worker.js')
-                })
-            }
-        </script>
-    </body>
+                <section>
+                    <p class="sentiment-result"><h3>Form Results:</h3></p>
+                    <div id="results">
+                        <ul>
+                            <li>
+                                <div>
+                                    <h3>Polarity:&nbsp;<span id="polarity"></span></h3>
+                                </div>
+                                <br>
+                                <div>
+                                    <h3>Confidence:&nbsp;<span id="polarity_confidence"></span></h3>
+                                </div>
+                                <br>
+                                <div>
+                                    <h3>Subjectivity:&nbsp;<span id="subjectivity"></span></h3>
+                                </div>
+                                <br>
+                                <div>
+                                    <h3>Subjectivity Confidence:&nbsp;<span id="subjectivity_confidence"></span></h3>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+    </main>
+    <footer>
+        <p>&copy; 2020, Evaluate a News Article with Natural Language Processing</p>
+    </footer>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+            })
+        }
+    </script>
+</body>
 
 </html>
